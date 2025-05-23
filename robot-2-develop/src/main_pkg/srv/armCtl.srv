@@ -1,0 +1,8 @@
+int64 cmd
+float32[] pose
+bool isGrapOpen
+---
+bool flag
+float32[] T
+
+

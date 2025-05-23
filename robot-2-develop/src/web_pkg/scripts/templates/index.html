@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <title>ROS Camera Control</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="video-panel">
+            <img id="video" src="{{ url_for('video_feed') }}">
+        </div>
+        
+        <div class="status-panel">
+            <h2>System Status</h2>
+            <div id="status">
+                <div class="status-item">
+                    ROS Connection: <span id="ros-status">...</span>
+                </div>
+                <div class="status-item">
+                    FPS: <span id="fps">...</span>
+                </div>
+                <div class="status-item">
+                    Resolution: <span id="resolution">...</span>
+                </div>
+                <div class="status-item">
+		    Tracking Info:
+		    <div class="track-info">
+			ID: <span id="track-id">...</span><br>
+			Type: <span id="track-type">...</span>
+		    </div>
+		</div>
+            </div>
+            
+            <div class="controls">
+                <button id="pauseBtn" class="control-btn" onclick="togglePause()">
+                    Pause Task
+                </button>
+                <button id="recordBtn" class="control-btn" onclick="toggleRecording()">
+                    Start Recording
+                </button>
+                <button class="control-btn" onclick="takeSnapshot()">
+                    Take Snapshot
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

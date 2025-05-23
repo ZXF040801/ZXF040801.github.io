@@ -1,0 +1,27 @@
+<launch>
+  <node pkg="log_pkg" type="loggerSever.py" name="log_node"/>
+  <!-- ② 里程计节点 -->
+  <node pkg="main_pkg" type="robotNode.py" name="robotNode" output="screen"/>
+
+
+<!-- Python‑2 版 TF 广播器 -->
+<node pkg="slam"
+      type="odom_tf_broadcaster.py"
+      name="odom_tf_py2"
+      output="screen"/>
+
+  <!-- ① LiDAR 驱动 -->
+  <include file="$(find ydlidar_ros_driver)/launch/X3.launch" />
+
+  <!-- ③ base_link → laser 静态 TF -->
+ <node pkg= "tf" type="static_transform_publisher" name= "base_link_to_laser"
+ args= " 0 0 0 0 0 0 /base_link /laser 40" />
+  <!-- ④ GMapping SLAM -->
+ <include file="$(find slam)/launch/gmapping.launch" />
+
+ <node pkg="rviz" type="rviz" name="rviz" args="-d $(find slam)/rviz/slam.rviz" required="true"/>
+ 
+
+ 
+ 
+</launch> 

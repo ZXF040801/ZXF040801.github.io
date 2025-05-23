@@ -1,0 +1,5 @@
+<launch>
+
+  <node pkg="map_server" type="map_saver" name="map_saver" args="-f $(find slam)/map/cmap3" />
+
+</launch>

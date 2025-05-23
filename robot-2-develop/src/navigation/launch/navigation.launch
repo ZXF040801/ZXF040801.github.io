@@ -1,0 +1,32 @@
+<launch>
+  <arg name="map_name" default="cmap3.yaml"/>
+  <!-- 启动Map server功能包，发布地图 -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find slam)/map/$(arg map_name)" />
+  <!-- ② 里程计节点 -->
+  <node pkg="main_pkg" type="robotNode.py" name="robotNode" output="screen"/>
+
+<!-- Python‑2 版 TF 广播器 -->
+<node pkg="slam"
+      type="odom_tf_broadcaster.py"
+      name="odom_tf_py2"
+      output="screen"/>
+     
+
+  <!-- ① LiDAR 驱动 -->
+<include file="$(find ydlidar_ros_driver)/launch/X3.launch" />
+
+
+ <node pkg= "tf" type="static_transform_publisher" name= "base_link_to_laser"
+ args= " 0 0 0 0 0 0 /base_link /laser 40" />
+        
+ <node pkg= "tf" type="static_transform_publisher" name= "map_to_odom"
+ args= " 0 0 0 0 0 0 /map /odom 40" />
+ 
+  <!-- <include file="$(find navigation)/launch/amcl.launch" /> -->
+
+
+  <include file="$(find navigation)/launch/move_base.launch"/>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find navigation)/rviz/nav_sample.rviz" required="true"/>
+
+</launch>

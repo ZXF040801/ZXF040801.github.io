@@ -1,0 +1,8 @@
+<launch>
+	<node pkg="log_pkg" type="loggerSever.py" name="log_node"/>
+	<node pkg="main_pkg" type="main.py" name="main_node"/>
+	<node pkg="vision_pkg" type="vision_node.py"  name="vision_node"/>
+ 
+  <include file="$(find navigation)/launch/navigation.launch"/>
+
+</launch>

@@ -1,0 +1,8 @@
+geometry_msgs/PoseStamped start_pose
+---
+nav_msgs/Path coverage_path
+bool success
+string message
+---
+bool planning_in_progress
+float32 percent_complete

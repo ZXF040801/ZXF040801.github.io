@@ -1,0 +1,6 @@
+<launch>
+	<node pkg="log_pkg" type="loggerSever.py" name="log_node"/>
+	<node pkg="vision_pkg" type="vision_node.py"  name="vision_node"/>
+
+
+</launch>

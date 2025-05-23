@@ -1,0 +1,9 @@
+build/
+devel/
+log/
+*/__pycache__/
+*.cpython-36.pyc
+*.engine
+*.so
+*.mp4
+include/
